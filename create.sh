@@ -47,7 +47,7 @@ fi
 function gettom() {
 #verifica se esta na globo.com ou infoglobo, baixa o pacote e descompacta
  rm -f /opt/tomcat.ORIG.tar 
- cd /opt && wget --no-check-certificate -q $SOURCE
+ cd /opt && wget --no-check-certificate -q $SOURCE -O tomcat.ORIG.tar 
  echo -e "Downloading \n $SOURCE \n"
 if [ ! -f /opt/tomcat.ORIG.tar ]; then
  echo "ERROR - /opt/tomcat.ORIG.tar not found"
