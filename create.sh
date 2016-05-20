@@ -84,13 +84,13 @@ if [ ! -d /opt/tomcat.ORIG ]; then
    gettom
 fi
 
-if [ `grep $USER /etc/passwd` ]; then
+U=`id -u $USER`
+if [ ! -z $U ]; then
         echo "$USER already found"
 else
         echo "$USER is being created"
         useradd $USER -c "For tomcat.$NOVA"
 fi
-
 
 cp -Rpn /opt/tomcat.ORIG /opt/tomcat.$NOVA
 rm -rf /opt/tomcat.$NOVA/logs/ 
