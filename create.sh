@@ -22,7 +22,8 @@ USER=$3
 JHOME=""
 START_COUNT=0
 MAX_RESTART_COUNT=2
-SOURCE="http://nagios1/post/tomcat3/tomcat.ORIG.tar"
+SOURCE="https://github.com/xoroz/tomcat_multi_instances/blob/master/tomcat.ORIG.tar?raw=true"
+DOWNLOAD_TOMCAT="https://github.com/xoroz/tomcat_multi_instances/blob/master/apache-tomcat-6.0.41.zip?raw=true"
 
 function checks() {
 #check if java is installed and try to find JAVA_HOME
