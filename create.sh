@@ -77,12 +77,20 @@ PASS=`date +%s | sha256sum | base64 | head -c 10`
 
 ################################## MAIN ########################
 
-echo "Criando nova instancia ${NOVA} baseada no /opt/tomcat.ORIG"
+echo "Creating new tomcat instance ${NOVA} from /opt/tomcat.ORIG"
 if [ ! -d /opt/tomcat.ORIG ]; then
-   echo "ERROR - Diretorio /opt/tomcat.ORIG nao existe!"
+   echo "ERROR - Directory /opt/tomcat.ORIG already found"
    checks
    gettom
 fi
+
+if [ `grep $USER /etc/passwd` ]; then
+        echo "$USER already found"
+else
+        echo "$USER is being created"
+        useradd $USER -c "For tomcat.$NOVA"
+fi
+
 
 cp -Rpn /opt/tomcat.ORIG /opt/tomcat.$NOVA
 rm -rf /opt/tomcat.$NOVA/logs/ 
