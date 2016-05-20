@@ -64,10 +64,10 @@ mv -f tomcat.ORIG/list_tomcat /usr/local/bin && \
 chmod +x /usr/local/bin/*_tomcat 
 echo $?
 if [ $? -ne 0 ];then 
- echo "ERROR - nao foi possivel pegar o tomcat Original!"
+ echo "ERROR - could not retrive tomcat Original!"
  exit 2
 else
- echo "Tomcat original foi baixado para: /opt/tomcat.ORIG"
+ echo "Tomcat downloaded at: /opt/tomcat.ORIG"
 fi
 }
 
