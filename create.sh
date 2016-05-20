@@ -6,6 +6,7 @@
 # update 12/08/14 Felipe - Acertos check_start, logrotate
 # update 12/08/14 Felipe - add SOURCE URL, novo pacote
 # update 10/09/14 Felipe - Nova estrutura no /opt, nao tenta iniciar, limpeza geral
+# update 20/05/16 Felipe - Public version - github 
 
 ## TO-DO
 #OK - verificar se existe java na maquina, caso nao sair e avisar
@@ -45,25 +46,14 @@ fi
 
 function gettom() {
 #verifica se esta na globo.com ou infoglobo, baixa o pacote e descompacta
-rm -f  /opt/tomcat.ORIG.tar
-
-if [[ $HOSTNAME == *info* ]]
-then
- echo "$HOSTNAME na infoglobo"
- rm -f /opt/tomcat.ORIG.tar
- cd /opt && wget -q $SOURCE
- echo "Arquivo baixado de $SOURCE com sucesso"
-elif [[ $HOSTNAME == *rio* ]] 
-then
- echo "$HOSTNAME na globo.com"
- echo "favor copiar manualmente o pacote de $SOURCE para /opt"
-else
- echo "$HOSTNAME nao identificado!"
-fi
-
+ rm -f /opt/tomcat.ORIG.tar 
+ cd /opt && wget --no-check-certificate -q $SOURCE
+ echo -e "Downloading \n $SOURCE \n"
 if [ ! -f /opt/tomcat.ORIG.tar ]; then
- echo "Arquivo /opt/tomcat.ORIG.tar nao encontrado!"
+ echo "ERROR - /opt/tomcat.ORIG.tar not found"
  exit 2
+else
+ echo "OK - File download"
 fi
 
 cd /opt && rm -rf tomcat.ORIG
